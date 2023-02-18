@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const DUMMY_MESSAGES = [];
-const DUMMY_THREAD = [{ user: "me", message: `meeessaaaaage` }];
+const DUMMY_THREAD = [{ user: "gpt", message: `How can I help you today?` }];
 
 const defaultState = {
   messages: DUMMY_MESSAGES,

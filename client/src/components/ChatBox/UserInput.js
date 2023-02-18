@@ -22,10 +22,29 @@ const UserInput = () => {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    const thread = [...chatLog, { user: "me", message: `${input}` }];
+    const userInput = { user: "me", message: `${input}` };
+    const thread = [...chatLog, userInput];
     setChatLog(thread);
     dispatch(messageActions.updateThread({ user: "me", message: `${input}` }));
     setInput("");
+
+    //fetch request to the API
+    const response = await fetch("http://localhost:3080", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: thread.map((message) => message.message).join(""),
+        //message: input,
+      }),
+    });
+    const data = await response.json();
+    console.log("data");
+    console.log(data.message);
+    const botResponse = { user: "gpt", message: `${data.message}` };
+    setChatLog([...chatLog, botResponse]);
+    dispatch(messageActions.updateThread(botResponse));
   };
 
   return (
