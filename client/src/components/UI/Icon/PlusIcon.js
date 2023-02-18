@@ -12,22 +12,22 @@ const PlusIcon = ({ style }) => {
         stroke="#f5ebeb"
         transform="matrix(-1, 0, 0, -1, 0, 0)rotate(180)"
       >
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
         <g
           id="SVGRepo_tracerCarrier"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           stroke="#CCCCCC"
-          stroke-width="0.384"
+          strokeWidth="0.384"
         ></g>
         <g id="SVGRepo_iconCarrier">
           {" "}
           <path
             d="M4 12H20M12 4V20"
             stroke="#d2cbcb"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></path>{" "}
         </g>
       </svg>
