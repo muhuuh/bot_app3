@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import PlusIcon from "../UI/Icon/PlusIcon";
+import OldChat from "./OldChat";
 
 const SideBar = () => {
   const messageStore = useSelector((state) => state.messages);
@@ -8,10 +9,18 @@ const SideBar = () => {
   console.log(messageStore);
   console.log(messageStore.conversations);
   console.log(messageStore.conversations[0]);
-  const oldConvos =
-    messageStore.conversations[0][0].message.substring(0, 15) + "...";
-  console.log("oldConvos");
-  console.log(oldConvos);
+
+  let oldConvos = [];
+  const convoList = messageStore.conversations.map((convo) => {
+    if (convo) {
+      oldConvos = convo[1].message.substring(0, 20) + "...";
+    }
+
+    return <OldChat oldConvo={oldConvos} />;
+  });
+
+  console.log("convoList");
+  console.log(convoList);
 
   const onClickNewHandler = () => {
     const event = new CustomEvent("newChatClick");
@@ -31,12 +40,7 @@ const SideBar = () => {
         <PlusIcon className="mr-2" />
         <div className="ml-2">New Chat</div>
       </button>
-      <button
-        onClick={onClickOldHandler}
-        className="relative z-10 flex flex-row border bg-botDarkGray border-gray-500 w-full text-left rounded-md py-2 px-6 hover:bg-hoverGray transition duration-150"
-      >
-        <div className="ml-2"> {oldConvos} </div>
-      </button>
+      <div className="mt-2">{convoList}</div>
     </aside>
   );
 };
