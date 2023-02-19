@@ -40,7 +40,7 @@ const SideBar = () => {
         <PlusIcon className="mr-2" />
         <div className="ml-2">New Chat</div>
       </button>
-      <div className="mt-2">{convoList}</div>
+      <div className="mt-4">{convoList}</div>
     </aside>
   );
 };
