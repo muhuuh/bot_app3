@@ -5,6 +5,8 @@ import UserInput from "./UserInput";
 
 const ChatBox = () => {
   const messageStore = useSelector((state) => state.messages);
+  console.log("messageStore");
+  console.log(messageStore);
   const currentThread = messageStore.thread;
   const chatThread = currentThread.map((currentMessage, index) => {
     return <Chatlog key={index} message={currentMessage} />;

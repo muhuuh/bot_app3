@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { messageActions } from "../store/message-slice";
 
@@ -6,6 +6,7 @@ const UserInput = () => {
   const textareaRef = useRef(null);
   const [input, setInput] = useState("");
   const [chatLog, setChatLog] = useState([]);
+  const [eventTriggered, setEventTriggered] = useState(0);
   const dispatch = useDispatch();
 
   //function to scroll to the bottom when new content is added
@@ -46,6 +47,18 @@ const UserInput = () => {
     setChatLog([...chatLog, botResponse]);
     dispatch(messageActions.updateThread(botResponse));
   };
+
+  const clearChatLog = () => {
+    dispatch(messageActions.saveConversation(chatLog));
+    setChatLog([]);
+  };
+
+  useEffect(() => {
+    window.addEventListener("newChatClick", clearChatLog);
+    return () => {
+      window.removeEventListener("newChatClick", () => {});
+    };
+  }, []);
 
   return (
     <div className="mx-10 mb-4">

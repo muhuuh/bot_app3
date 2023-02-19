@@ -1,12 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const DUMMY_MESSAGES = [];
+const DUMMY_CONVERSATIONS = [];
 const DUMMY_THREAD = [{ user: "gpt", message: `How can I help you today?` }];
 
 const defaultState = {
-  messages: DUMMY_MESSAGES,
+  conversations: DUMMY_CONVERSATIONS,
   thread: DUMMY_THREAD,
-  totalMessages: 0,
 };
 
 const messageSlice = createSlice({
@@ -16,6 +15,13 @@ const messageSlice = createSlice({
     updateThread(state, action) {
       const newMessage = action.payload;
       state.thread = [...state.thread, newMessage];
+    },
+    saveConversation(state, action) {
+      const newConversation = action.payload;
+      console.log("newConversation");
+      console.log(newConversation);
+      state.conversations = [...state.conversations, state.thread];
+      state.thread = DUMMY_THREAD;
     },
   },
 });
