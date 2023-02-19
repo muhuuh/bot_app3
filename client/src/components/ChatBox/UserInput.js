@@ -36,7 +36,7 @@ const UserInput = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        message: thread.map((message) => message.message).join(""),
+        message: thread.map((message) => message.message).join("\n"),
         //message: input,
       }),
     });
